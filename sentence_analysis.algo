@@ -1,0 +1,38 @@
+ALGORITHM SentenceAnalysis
+
+VAR
+  ch      : CHAR;
+  nbChars : INTEGER := 0;
+  nbWords : INTEGER := 1;
+  nbVowels: INTEGER := 0;
+
+BEGIN
+
+  Write("Enter a sentence ending with a period (.) : ");
+  Read(ch);
+
+  WHILE ch <> '.' DO
+
+    nbChars := nbChars + 1;
+
+    IF ch = ' ' THEN
+      nbWords := nbWords + 1;
+    END_IF;
+
+    IF ch = 'a' OR ch = 'e' OR ch = 'i' OR ch = 'o' OR ch = 'u'
+    OR ch = 'A' OR ch = 'E' OR ch = 'I' OR ch = 'O' OR ch = 'U' THEN
+      nbVowels := nbVowels + 1;
+    END_IF;
+
+    Read(ch);
+
+  END_WHILE;
+
+  // The period is the last character and should be counted as well
+  nbChars := nbChars + 1;
+
+  Write("Number of characters (including the period) : ", nbChars);
+  Write("Number of words                             : ", nbWords);
+  Write("Number of vowels                            : ", nbVowels);
+
+END
