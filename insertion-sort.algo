@@ -1,0 +1,70 @@
+ALGORITHM InsertionSort
+
+VAR
+  arr : ARRAY[0..99] OF INTEGER;
+  n   : INTEGER;
+  i   : INTEGER;
+  j   : INTEGER;
+  key : INTEGER;
+
+BEGIN
+
+  // -------------------------------------------------------
+  // STEP 1 : Read the size of the array
+  // -------------------------------------------------------
+
+  Write("Enter the number of elements : ");
+  Read(n);
+
+  // -------------------------------------------------------
+  // STEP 2 : Read the elements into the array
+  // -------------------------------------------------------
+
+  i := 0;
+  WHILE i < n DO
+    Write("Enter element [", i, "] : ");
+    Read(arr[i]);
+    i := i + 1;
+  END_WHILE;
+
+  // -------------------------------------------------------
+  // STEP 3 : Sort -- Insertion Sort
+  //
+  //   At each iteration i, arr[0..i-1] is already sorted.
+  //   Pick arr[i] as the key and insert it into
+  //   its correct position within arr[0..i-1].
+  // -------------------------------------------------------
+
+  i := 1;
+  WHILE i < n DO
+
+    // STEP 3.1 : Pick the current element to insert
+    key := arr[i];
+    j   := i - 1;
+
+    // STEP 3.2 : Shift elements of arr[0..i-1] that are
+    //            greater than key one position to the right
+    WHILE j >= 0 AND arr[j] > key DO
+      arr[j + 1] := arr[j];
+      j := j - 1;
+    END_WHILE;
+
+    // STEP 3.3 : Insert key at its correct position
+    arr[j + 1] := key;
+
+    i := i + 1;
+
+  END_WHILE;
+
+  // -------------------------------------------------------
+  // STEP 4 : Display the sorted array
+  // -------------------------------------------------------
+
+  Write("Sorted array : ");
+  i := 0;
+  WHILE i < n DO
+    Write(arr[i], " ");
+    i := i + 1;
+  END_WHILE;
+
+END
